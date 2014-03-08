@@ -25,7 +25,7 @@
       this.load.image('ball2', 'assets/bigBall2.png');
       this.load.image('ball3', 'assets/bigBall3.png');
       this.load.image('ball4', 'assets/bigBall4.png');
-      this.load.image('outline', 'assets/outline.png');
+      this.load.image('outline', 'assets/outLine.png');
       
       this.load.image('musicOn', 'assets/musicOn.png');
       this.load.image('musicOff', 'assets/musicOff.png');
