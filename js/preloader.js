@@ -20,6 +20,10 @@
       this.load.image('facebook', 'assets/facebook.png');
       this.load.image('retry', 'assets/retry.png');
       
+      this.load.image('tapToStart', 'assets/tapToStart.png');
+      this.load.image('help', 'assets/help.png');
+
+      
       
       this.load.image('ball1', 'assets/bigBall1.png');
       this.load.image('ball2', 'assets/bigBall2.png');
@@ -27,8 +31,8 @@
       this.load.image('ball4', 'assets/bigBall4.png');
       this.load.image('outline', 'assets/outLine.png');
       
-      this.load.image('musicOn', 'assets/musicOn.png');
-      this.load.image('musicOff', 'assets/musicOff.png');
+      this.load.image('musicOn', 'assets/soundOn.png');
+      this.load.image('musicOff', 'assets/soundOff.png');
       
       
 
