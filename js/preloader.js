@@ -32,7 +32,7 @@
       this.load.image('outline', 'assets/outLine.png');
       
       
-      this.load.image('scoreBar', 'assets/scoreBar.png');
+      this.load.image('scoreBar', 'assets/bar.png');
       
       
       
