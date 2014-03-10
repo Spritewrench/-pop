@@ -4,7 +4,7 @@ var count = 0;
 
   function Game() {
     this.group = new Array();
-    this.groupOutline = new Array();
+    this.groupText = new Array();
     this.score = null;
     this.count = 0;
     this.size = 64;
@@ -12,7 +12,6 @@ var count = 0;
     this.textGroup = null;
     this.spriteGroup = null;
     this.scoreBar = null;
-    
   }
 
   Game.prototype = {
@@ -25,26 +24,23 @@ var count = 0;
       this.textGroup = this.add.group();
       this.stage.backgroundColor = '#476b76';
       this.group = new Array();
-      this.groupOutline = new Array();
+      this.groupText = new Array();
       this.addBall(60,50);
       this.addBall(160,50);
       this.addBall(260,50);
       this.physics.gravity.y = 300;
       var text = this.count+'';
 
+      var style = { font: '48px pecitamedium', fill: '#fff', align: 'center' };
       
       this.scoreBar = this.add.sprite(0, 400, 'scoreBar');
-      this.scoreBar.fixedToCamera = true;     
-      
-      var style = { font: '48px pecitamedium', fill: '#fff', align: 'center' };
+      this.scoreBar.fixedToCamera = true;    
 
-      this.score = this.add.text(160, 420, text, style);
+      this.score = this.add.text(160, 420, text, style) ;
       this.score.anchor.setTo(0.5, 0.5);
-      
-
-      
       this.textGroup.add(this.scoreBar);
       this.textGroup.add(this.score);
+      
       
        
     },
@@ -52,7 +48,6 @@ var count = 0;
     tap: function (ball) {
       if(ball.hp > 1){
         ball.body.velocity.y =-300;
-       
         //ball.body.velocity.x = Math.floor((Math.random()*200)-100);
         //this.count++;  
         ball.hp--;
@@ -70,7 +65,7 @@ var count = 0;
     addBall: function (x,y) {
       var ball;
       var ballType = Math.floor((Math.random()*4)+1);
-      var outline;
+      var life;
       
    
       
@@ -81,21 +76,19 @@ var count = 0;
       this.prev = ballType;      
       
       ball = this.add.sprite(x, y, 'ball'+ballType);
-      ball.hp = 3;//Math.floor((Math.random()*3)+1);
+      ball.hp = 3; //Math.floor((Math.random()*8)+1);
       
-      outline = this.add.sprite(x, y, 'outline');
-      outline.width = this.size;
-      outline.height = this.size;
-      outline.anchor.setTo(0.5, 0.5);
-      outline.x = ball.x;
-      outline.y = ball.y;
-      outline.body.maxVelocity.y = 150;
-      this.groupOutline.push(outline);
-      this.spriteGroup.add(outline);
+      
+      var text = ball.hp+'';
+      var style = { font: '40px pecitamedium', fill: '#fff', align: 'center' };   
+      life= this.add.text(x, y, text, style);
+      life.anchor.setTo(0.5, 0.5);      
+      this.groupText.push(life);
       
       
       ball.width = this.size;
       ball.height = this.size;
+
       ball.anchor.setTo(0.5, 0.5);
       ball.inputEnabled = true;
       ball.input.useHandCursor = true;
@@ -128,12 +121,11 @@ var count = 0;
 
       
       for(var i = 0 ; i < this.group.length; i++){
-        this.groupOutline[i].y = this.group[i].y;
-        this.groupOutline[i].body.velocity.y =-1;
+        
         
         if(this.group[i].hp > 0){
-          
-          
+          this.groupText[i].setText(this.group[i].hp);
+          this.groupText[i].y = this.group[i].y;
           
           if( this.group[i].y >480){
             this.reset();
@@ -152,16 +144,13 @@ var count = 0;
           }          
         }
         else{
-
+          this.groupText[i].visible = false;
           if(this.group[i].width <= 800){
             this.group[i].width++;
             this.group[i].height = this.group[i].width++;
             
-            
           }
           this.group[i].body.velocity.y =-1;
-          
-          
         }
           
         

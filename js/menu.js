@@ -29,41 +29,30 @@
       this.logo.height = 164;
       //this.logo.fixedToCamera = true;
       this.logo.anchor.setTo(0.5, 0.5);
+      this.logo.inputEnabled = true;
+      this.logo.input.useHandCursor = true;      
+      this.logo.events.onInputDown.add(this.onDown,this);
       //y = y + this.logo.height + 5;
       //this.startTxt = this.add.bitmapText(x, y, 'TAP TO START', {font: '12px minecraftia', align: 'center'});
       //this.startTxt = this.game.add.text(x, y, 'text here', { font: '20px pecita', fill: '#fff', align: 'center' });
-      this.startTxt = this.game.add.text(x, y-100, '!PoP', { font: '64px pecitamedium', fill: '#fff', align: 'center' }); 
+      this.startTxt = this.game.add.text(x, y, '!PoP', { font: '64px pecitamedium', fill: '#fff', align: 'center' }); 
 
       this.startTxt.anchor.setTo(0.5, 0.5);
 
-      
-      
-      
-      this.tapToStart = this.add.sprite(x,370,'tapToStart');
-      this.tapToStart.anchor.setTo(0.5, 0.5);
-      this.tapToStart.inputEnabled = true;
-      this.tapToStart.input.useHandCursor = true;      
-      this.tapToStart.events.onInputDown.add(this.onDown,this);
-      
-      this.help = this.add.sprite(240,440,'help');
-      this.help.anchor.setTo(0.5, 0.5);
-      this.help.inputEnabled = true;
-      this.help.input.useHandCursor = true;      
-      //this.help.events.onInputDown.add(this.onDown,this);      
       
       
       this.music = this.add.audio('someChords',1,true);
       this.music.play('',0,1,true);   
       
       
-      this.musicOff = this.add.sprite(80,440,'musicOff');
+      this.musicOff = this.add.sprite(x,y+150,'musicOff');
       this.musicOff.anchor.setTo(0.5, 0.5);
       this.musicOff.inputEnabled = true;
       this.musicOff.input.useHandCursor = true;
       this.musicOff.events.onInputDown.add(this.pause,this); 
       this.musicOff.visible = false;
       
-      this.musicOn = this.add.sprite(80,440,'musicOn');
+      this.musicOn = this.add.sprite(x,y+150,'musicOn');
       this.musicOn.anchor.setTo(0.5, 0.5);
       this.musicOn.inputEnabled = true;
       this.musicOn.input.useHandCursor = true;
@@ -80,7 +69,7 @@
       var x = this.game.width / 2
         , y = this.game.height / 2;      
       var soundy = y+150;
-      var logoTar = y - 100;
+      var logoTar = y;
       this.logo.y += (logoTar - this.logo.y)*0.1;
       //this.musicCtrl.y += (soundy - this.musicCtrl.y)*0.1;
       if(this.nextAnime){

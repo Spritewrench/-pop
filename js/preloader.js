@@ -36,8 +36,8 @@
       
       
       
-      this.load.image('musicOn', 'assets/soundOn.png');
-      this.load.image('musicOff', 'assets/soundOff.png');
+      this.load.image('musicOn', 'assets/musicOn.png');
+      this.load.image('musicOff', 'assets/musicOff.png');
       
       
 
