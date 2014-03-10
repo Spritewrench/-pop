@@ -54,13 +54,22 @@
       
       this.music = this.add.audio('someChords',1,true);
       this.music.play('',0,1,true);   
-      this.music.pause();
+      
       
       this.musicOff = this.add.sprite(80,440,'musicOff');
       this.musicOff.anchor.setTo(0.5, 0.5);
       this.musicOff.inputEnabled = true;
       this.musicOff.input.useHandCursor = true;
       this.musicOff.events.onInputDown.add(this.pause,this); 
+      this.musicOff.visible = false;
+      
+      this.musicOn = this.add.sprite(80,440,'musicOn');
+      this.musicOn.anchor.setTo(0.5, 0.5);
+      this.musicOn.inputEnabled = true;
+      this.musicOn.input.useHandCursor = true;
+      this.musicOn.events.onInputDown.add(this.pause,this);    
+      
+      
       
       
       
@@ -90,10 +99,16 @@
       if(this.soundCtrl == 0){
         this.music.pause()
         this.soundCtrl = 1;
+        this.musicOff.visible = true;
+        this.musicOn.visible = false;        
+
+        
       }
       else{
         this.music.resume();
         this.soundCtrl = 0;
+        this.musicOff.visible = false;
+        this.musicOn.visible = true;        
       }
       
     },

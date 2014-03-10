@@ -1,35 +1,35 @@
 /* TEAM */
 
+Name: Glen Henry
                             
-Your title: Your name.
-S
-                            
-Site: email, link to a contact form, etc.
+Site: http://spritewrench.github.io/
 
                             
-Twitter: your Twitter username.
+Twitter: @spritewrench
 
                             
-Location: City, Country.
+Location: Kingston, Jamaica
+
+Music: @LimeFaceX
 
 
 							
 /* THANKS */
 
 							
-Name: name or url
+Name: http://spritewrench.github.io/-pop/
 
                             
 /* SITE */
 
                             
-Last update: YYYY/MM/DD 
+Last update: 2014/03/09
 
                             
-Standards: HTML5, CSS3,..
+Standards: HTML5, CSS3
 
                             
-Components: Modernizr, jQuery, etc.
+Components: phaser
 
                             
-Software: Software used for the development
+Software: adobe brackets, photoshop

@@ -55,7 +55,7 @@
       //this.nextAnime = true;
       //alert();
       //window.location.href = "https://twitter.com/intent/tweet?text=I just popped "+count+" dots in !pop. Beat that: https://dl.dropboxusercontent.com/u/2302094/tapJuggler/index.html";
-      this.game.state.start('menu');
+      this.game.state.start('game');
     },
     sendTweet: function () {
       //this.nextAnime = true;

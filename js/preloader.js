@@ -31,6 +31,11 @@
       this.load.image('ball4', 'assets/bigBall4.png');
       this.load.image('outline', 'assets/outLine.png');
       
+      
+      this.load.image('scoreBar', 'assets/scoreBar.png');
+      
+      
+      
       this.load.image('musicOn', 'assets/soundOn.png');
       this.load.image('musicOff', 'assets/soundOff.png');
       
@@ -40,6 +45,7 @@
       
       this.load.image('background', 'assets/bg.png');
       this.load.image('background2', 'assets/bg1.png');
+      
       //music from @LimeFaceX
       this.load.audio('someChords', ['assets/Gold.mp3', 'assets/Gold.ogg']);   
 

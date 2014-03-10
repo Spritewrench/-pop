@@ -5,18 +5,13 @@ var count = 0;
   function Game() {
     this.group = new Array();
     this.groupOutline = new Array();
-    this.player1 = null;
-    this.player2 = null;
-    this.player3 = null;
-    this.bg = null;
     this.score = null;
-    this.lossMessage = null;
     this.count = 0;
-    this.texture = null;
     this.size = 64;
     this.prev = 0;
     this.textGroup = null;
     this.spriteGroup = null;
+    this.scoreBar = null;
     
   }
 
@@ -37,10 +32,18 @@ var count = 0;
       this.physics.gravity.y = 300;
       var text = this.count+'';
 
+      
+      this.scoreBar = this.add.sprite(0, 400, 'scoreBar');
+      this.scoreBar.fixedToCamera = true;     
+      
       var style = { font: '48px pecitamedium', fill: '#fff', align: 'center' };
 
-      this.score = this.add.text(160, 400, text, style);
+      this.score = this.add.text(160, 420, text, style);
       this.score.anchor.setTo(0.5, 0.5);
+      
+
+      
+      this.textGroup.add(this.scoreBar);
       this.textGroup.add(this.score);
       
        
