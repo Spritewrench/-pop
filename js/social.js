@@ -60,7 +60,8 @@
     sendTweet: function () {
       //this.nextAnime = true;
       //alert();
-      window.location.href = "https://twitter.com/intent/tweet?text=I just popped "+count+" dots in !pop, a meditative game where you pop dots in order to cause explosions of color! #popgame spritewrench.github.io/-pop via @spritewrench";
+      
+      window.location.href = "https://twitter.com/intent/tweet?button_hashtag=popgame&text=I just popped "+count+" dots in !pop, a game where you create serene explosions of color!  http://spritewrench.github.io/-pop/ via @spritewrench";
     }
   };
 
