@@ -60,7 +60,7 @@
     sendTweet: function () {
       //this.nextAnime = true;
       //alert();
-      window.location.href = "https://twitter.com/intent/tweet?text=I just popped "+count+" dots in !pop. Beat that: https://dl.dropboxusercontent.com/u/2302094/tapJuggler/index.html";
+      window.location.href = "https://twitter.com/intent/tweet?text=I just popped "+count+" dots in !pop, a meditative game where you pop dots in order to cause explosions of color! #popgame spritewrench.github.io/-pop via @spritewrench";
     }
   };
 
