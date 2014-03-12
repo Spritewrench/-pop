@@ -7,7 +7,7 @@
     this.tweet = null;
     this.bg = null;
     this.nextAnime = false;
-    this.test = 0;
+    this.scoreText= null;
   }
 
   Social.prototype = {
@@ -36,6 +36,14 @@
       //this.startTxt.input.useHandCursor = true;
       this.startTxt.events.onInputDown.add(this.reset,this);  
       //this.input.onDown.add(this.onDown, this);
+      
+      
+      
+
+
+      var style = { font: '120px pecitamedium', fill: '#fff', align: 'center' };   
+      this.scoreText = this.add.text(x, 80, count+'!', style) ;      
+      this.scoreText.anchor.setTo(0.5, 0.5);
     },
 
     update: function () {
