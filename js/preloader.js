@@ -17,11 +17,8 @@
       this.load.setPreloadSprite(this.asset);
 
       this.load.image('twitter', 'assets/twitter.png');
-      this.load.image('facebook', 'assets/facebook.png');
-      this.load.image('retry', 'assets/retry.png');
+
       
-      this.load.image('tapToStart', 'assets/tapToStart.png');
-      this.load.image('help', 'assets/help.png');
 
       
       
@@ -29,7 +26,13 @@
       this.load.image('ball2', 'assets/bigBall2.png');
       this.load.image('ball3', 'assets/bigBall3.png');
       this.load.image('ball4', 'assets/bigBall4.png');
-      this.load.image('outline', 'assets/outLine.png');
+      
+      this.load.image('hpring1', 'assets/hpRing1.png');
+      this.load.image('hpring2', 'assets/hpRing2.png');
+      this.load.image('hpring3', 'assets/hpRing3.png');
+      
+      this.load.image('retry', 'assets/retry.png');
+
       
       
       this.load.image('scoreBar', 'assets/bar.png');
