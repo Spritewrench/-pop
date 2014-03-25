@@ -50,7 +50,7 @@
       this.load.image('background2', 'assets/bg1.png');
       
       //music from @LimeFaceX
-      this.load.audio('someChords', ['assets/Gold.mp3', 'assets/Gold.ogg']);   
+      this.load.audio('someChords', ['assets/Gold.ogg']);   
 
       
     },
