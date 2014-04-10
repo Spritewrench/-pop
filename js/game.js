@@ -14,14 +14,22 @@ var count = 0;
     this.prev = 0;
     this.textGroup = null;
     this.spriteGroup = null;
-    this.scoreBar = null;
+
+    this.ballCount = 0;
+    this.ballNum = 0;
+    this.ballx = 60;
+    this.alphaCounter = 0;
+    this.scoreTar = 500;
   }
 
   Game.prototype = {
 
     create: function () {
     
-      
+      this.ballCount = 0;
+      this.ballNum = 0;      
+      this.alphaCounter = 0;
+      this.scoreTar = 500;
       
       this.spriteGroup = this.add.group();
       this.textGroup = this.add.group();
@@ -37,16 +45,18 @@ var count = 0;
       this.physics.gravity.y = 300;
       var text = this.count+'';
 
-      var style = { font: '48px pecitamedium', fill: '#fff', align: 'center' };
+      var style = { font: '48px nunitolight', fill: '#fff', align: 'center' };
       
-      this.scoreBar = this.add.sprite(0, 400, 'scoreBar');
-      this.scoreBar.fixedToCamera = true;    
+  
 
-      this.score = this.add.text(160, 420, text, style) ;
+      this.score = this.add.text(160, 500, text, style) ;
       this.score.anchor.setTo(0.5, 0.5);
-      this.textGroup.add(this.scoreBar);
+
       this.textGroup.add(this.score);
-      
+      this.count = 0;
+      this.prev = 0;
+    
+        
       
        
     },
@@ -57,9 +67,12 @@ var count = 0;
         //ball.body.velocity.x = Math.floor((Math.random()*200)-100);
         //this.count++;  
         ball.hp--;
+        ball.width += 30/ball.hp;
+        ball.height += 30/ball.hp;
       }
       else if(ball.hp === 1){
         this.count++; 
+        this.alphaCounter = 100;
         this.addBall(ball.x,-10);
         ball.hp = 0;
       }
@@ -73,46 +86,77 @@ var count = 0;
       var ballType = Math.floor((Math.random()*4)+1);
       var life;
       
-   
-      
-      //no two colours side by side
-      while(this.prev == ballType){
-        ballType = Math.floor((Math.random()*4)+1);
-      }      
-      this.prev = ballType;      
-      
-      ball = this.add.sprite(x, y, 'ball'+ballType);
-      ball.hp = 3; //Math.floor((Math.random()*8)+1);
-      
-      life = this.add.sprite(x, y, 'hpring3');
-      life.width = 32;
-      life.height = 32;
-      life.anchor.setTo(0.5, 0.5);   
-      this.hp3.push(life);
-      
-      life = this.add.sprite(x, y, 'hpring2');
-      life.width = 32;
-      life.height = 32;
-      life.anchor.setTo(0.5, 0.5);   
-      this.hp2.push(life);
-      
-      life = this.add.sprite(x, y, 'hpring1');
-      life.width = 32;
-      life.height = 32;
-      life.anchor.setTo(0.5, 0.5);   
-      this.hp1.push(life);      
-      
-      
-      ball.width = this.size;
-      ball.height = this.size;
+      //recycle
+      if(this.group.length > 10){
+        this.group[this.ballNum].bringToTop();
+        this.group[this.ballNum].hp = 3;
+        this.group[this.ballNum].width = 64;
+        this.group[this.ballNum].height = 64;
+        this.group[this.ballNum].y = -10;
+        this.group[this.ballNum].x = this.ballx;
+        this.hp1[this.ballNum].visible = true;
+        this.hp2[this.ballNum].visible = true;
+        this.hp3[this.ballNum].visible = true; 
 
-      ball.anchor.setTo(0.5, 0.5);
-      ball.inputEnabled = true;
-      ball.input.useHandCursor = true;
-      ball.events.onInputDown.add(this.tap,this);
-      ball.body.maxVelocity.y = 150;
-      this.group.push(ball);
-      this.spriteGroup.add(ball);
+        this.hp1[this.ballNum].x = this.ballx;
+        this.hp2[this.ballNum].x = this.ballx;
+        this.hp3[this.ballNum].x = this.ballx;         
+        
+        this.hp1[this.ballNum].bringToTop();
+        this.hp2[this.ballNum].bringToTop();
+        this.hp3[this.ballNum].bringToTop();
+        this.ballNum++;
+        this.ballx += 100;
+        if(this.ballx > 260){
+          this.ballx = 60;
+        }
+        if(this.ballNum > 10){
+          this.ballNum = 0;
+        }
+        
+      }
+      else{
+        //no two colours side by side
+        while(this.prev == ballType){
+          ballType = Math.floor((Math.random()*4)+1);
+        }      
+        this.prev = ballType;      
+
+        ball = this.add.sprite(x, y, 'ball'+ballType);
+        ball.hp = 3; //Math.floor((Math.random()*8)+1);
+
+        life = this.add.sprite(x, y, 'hpring3');
+        life.width = 32;
+        life.height = 32;
+        life.anchor.setTo(0.5, 0.5);   
+        this.hp3.push(life);
+
+        life = this.add.sprite(x, y, 'hpring2');
+        life.width = 32;
+        life.height = 32;
+        life.anchor.setTo(0.5, 0.5);   
+        this.hp2.push(life);
+
+        life = this.add.sprite(x, y, 'hpring1');
+        life.width = 32;
+        life.height = 32;
+        life.anchor.setTo(0.5, 0.5);   
+        this.hp1.push(life);      
+
+
+        ball.width = this.size;
+        ball.height = this.size;
+
+        ball.anchor.setTo(0.5, 0.5);
+        ball.inputEnabled = true;
+        ball.input.useHandCursor = true;
+        ball.events.onInputDown.add(this.tap,this);
+        ball.body.maxVelocity.y = 150;
+        this.group.push(ball);
+        this.ballCount++;
+        this.spriteGroup.add(ball);        
+      }
+        
 
     }, 
     reset: function () {
@@ -133,7 +177,21 @@ var count = 0;
     update: function () {
       
       this.score.setText(this.count+'');
+      //position of text
+      this.score.y += (this.scoreTar - this.score.y)*0.1;
       
+      if(this.alphaCounter > 0){
+        this.scoreTar = 420
+        this.alphaCounter--;
+        if(this.alphaCounter < 0){
+          this.alphaCounter = 0;
+        }
+      }
+      else{
+        this.scoreTar = 500;
+      }
+
+
 
 
       
@@ -141,6 +199,11 @@ var count = 0;
         
 
         if(this.group[i].hp > 0){
+          
+          if(this.group[i].width > 64){
+            this.group[i].width--;
+            this.group[i].height = this.group[i].width;
+          }
           
           this.hp1[i].y = this.group[i].y;
           this.hp1[i].body.velocity = -1;      

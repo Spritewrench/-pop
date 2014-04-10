@@ -16,7 +16,7 @@
       var x = this.game.width / 2
         , y = this.game.height / 2;
       
-      this.stage.backgroundColor = '#fff';
+      this.stage.backgroundColor = '#44ccf6';
       this.tweet = this.add.sprite(x,-100,'twitter');
 
       //this.logo.fixedToCamera = true;
@@ -41,8 +41,8 @@
       
 
 
-      var style = { font: '120px pecitamedium', fill: '#000', align: 'center' };   
-      this.scoreText = this.add.text(x, 80, count+'!', style) ;      
+      var style = { font: '100px nunitolight', fill: '#fff', align: 'center' };   
+      this.scoreText = this.add.text(x+10, 80, count+'!', style) ;      
       this.scoreText.anchor.setTo(0.5, 0.5);
     },
 

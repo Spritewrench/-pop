@@ -13,3 +13,14 @@
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'nunitolight';
+    src: url('nunito-light-webfont.eot');
+    src: url('nunito-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('nunito-light-webfont.woff') format('woff'),
+         url('nunito-light-webfont.ttf') format('truetype'),
+         url('nunito-light-webfont.svg#nunitolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

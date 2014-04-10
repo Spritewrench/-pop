@@ -13,7 +13,7 @@
       this.asset = this.add.sprite(160, 240, 'preloader');
       this.asset.anchor.setTo(0.5, 0.5);
 
-      //this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+      this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
       this.load.setPreloadSprite(this.asset);
 
       this.load.image('twitter', 'assets/twitter.png');
@@ -35,7 +35,6 @@
 
       
       
-      this.load.image('scoreBar', 'assets/bar.png');
       
       
       
@@ -50,8 +49,8 @@
       this.load.image('background2', 'assets/bg1.png');
       
       //music from @LimeFaceX
-      this.load.audio('someChords', ['assets/Gold.ogg']);   
-
+      this.load.audio('someChords', ['assets/Gold.m4a']);   
+      this.ready=false;
       
     },
 
@@ -60,8 +59,8 @@
     },
 
     update: function () {
-      if (this.ready===false && this.cache.isSoundDecoded('someChords') ) {
-        this.ready=true;
+      if (this.ready===true && this.cache.isSoundDecoded('someChords') ) {
+        //this.ready=true;
         //hide loading css
         document.getElementById('ball').style.display = 'none';
         //show game
