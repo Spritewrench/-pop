@@ -170,7 +170,7 @@ var count = 0;
       
  
       
-      
+      //localStorage.setItem("highScore",count)
       this.game.state.start('social');
 
     },

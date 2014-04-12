@@ -16,6 +16,7 @@
       var x = this.game.width / 2
         , y = this.game.height / 2;
       
+      
       this.stage.backgroundColor = '#44ccf6';
       this.tweet = this.add.sprite(x,-100,'twitter');
 
@@ -41,20 +42,34 @@
       
 
 
-      var style = { font: '100px nunitolight', fill: '#fff', align: 'center' };   
-      this.scoreText = this.add.text(x+10, 80, count+'!', style) ;      
+
+      var scoreMsg = count+'!';
+      var style = { font: '32px nunitolight', fill: '#fff', align: 'center' };   
+      this.hscoreText = this.add.text(x+10, 40, "New High Score", style) ; 
+      this.hscoreText.anchor.setTo(0.5, 0.5);
+      this.hscoreText.visible = false;
+
+      if(count > localStorage.getItem("highScore")){
+        localStorage.setItem("highScore",count);
+        this.hscoreText.visible = true;
+         
+      }
+
+      style = { font: '100px nunitolight', fill: '#fff', align: 'center' };   
+      this.scoreText = this.add.text(x+10, 110, scoreMsg, style) ;      
       this.scoreText.anchor.setTo(0.5, 0.5);
     },
 
     update: function () {
       var x = this.game.width / 2
         , y = this.game.height / 2;    
-      var tweety = y - 50;
-      var texty = y + 80;
+      var tweety = y - 30;
+      var texty = y + 70;
       this.tweet.y += (tweety - this.tweet.y)*0.1;
       this.startTxt.y += (texty - this.startTxt.y)*0.1;
       if(this.test == 0){
       }
+      
 
         
 
