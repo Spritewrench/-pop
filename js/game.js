@@ -106,13 +106,28 @@ var count = 0;
         this.hp2[this.ballNum].bringToTop();
         this.hp3[this.ballNum].bringToTop();
         this.ballNum++;
-        this.ballx += 100;
+        var ballPlacement = Math.floor((Math.random()*4)+1);
+        switch(ballPlacement){
+            case 1:
+              this.ballx = 60;
+              break;
+            case 2:
+              this.ballx = 160;
+              break;
+            case 3:
+              this.ballx = 260;
+              break;
+            default:
+              this.ballx = 60;
+              break;
+        }
+       /* this.ballx += 100;
         if(this.ballx > 260){
           this.ballx = 60;
         }
         if(this.ballNum > 10){
           this.ballNum = 0;
-        }
+        }*/
         
       }
       else{

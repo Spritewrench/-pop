@@ -20,7 +20,8 @@ html, body {
 }
 canvas{
     display : block;
-    margin : auto;          
+    margin : auto;  
+
 }
 
 
@@ -33,9 +34,10 @@ body {
 .container {
   width: 200px;
   height: 100px;
-  padding-top: 100px;
+  padding-top: 150px;
   margin: 0 auto;
 }
+
 
 .ball {
   width: 40px;
