@@ -1,3 +1,4 @@
+var bgmusic = null;
 (function() {
   'use strict';
 
@@ -42,7 +43,8 @@
       
       
       this.music = this.add.audio('someChords',1,true);
-      this.music.play('',0,1,true);   
+      this.music.play('',0,1,true);  
+      bgmusic = this.music;
       
       
       this.musicOff = this.add.sprite(x,y+150,'musicOff');

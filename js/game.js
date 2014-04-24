@@ -15,17 +15,25 @@ var count = 0;
     this.textGroup = null;
     this.spriteGroup = null;
 
+    this.pausebtn = null;
+    this.playbtn = null;
+    
     this.ballCount = 0;
     this.ballNum = 0;
     this.ballx = 60;
     this.alphaCounter = 0;
     this.scoreTar = 500;
+    
+    this.soundCtrl = 0;
+    this.musicOn =null;
+    this.musicOff = null;    
   }
 
   Game.prototype = {
 
     create: function () {
-    
+      
+      this.pause = false;
       this.ballCount = 0;
       this.ballNum = 0;      
       this.alphaCounter = 0;
@@ -43,15 +51,54 @@ var count = 0;
       this.addBall(160,50);
       this.addBall(260,50);
       this.physics.gravity.y = 300;
+      
+      
+      this.pausebtn=  this.add.sprite(210, 32, 'pause');
+      this.pausebtn.anchor.setTo(0.5, 0.5);
+      this.pausebtn.fixedToCamera = true; 
+      this.pausebtn.inputEnabled = true;
+      this.pausebtn.input.useHandCursor = true;
+      this.pausebtn.events.onInputDown.add(this.pauseCtrl2,this);       
+      this.textGroup.add(this.pausebtn);
+      
+      this.playbtn=  this.add.sprite(210, 32, 'play');
+      this.playbtn.anchor.setTo(0.5, 0.5);
+      this.playbtn.fixedToCamera = true; 
+      this.playbtn.visible = false;
+      this.playbtn.inputEnabled = true;
+      this.playbtn.input.useHandCursor = true;
+      this.playbtn.events.onInputDown.add(this.pauseCtrl2,this);       
+      this.textGroup.add(this.playbtn);
+      
       var text = this.count+'';
 
       var style = { font: '48px nunitolight', fill: '#fff', align: 'center' };
       
+      
+      
   
-
+      
       this.score = this.add.text(160, 500, text, style) ;
       this.score.anchor.setTo(0.5, 0.5);
 
+      this.musicOff = this.add.sprite(110,32,'musicOffw');
+      this.musicOff.anchor.setTo(0.5, 0.5);
+      this.musicOff.inputEnabled = true;
+      this.musicOff.input.useHandCursor = true;
+      this.musicOff.fixedToCamera = true; 
+      this.musicOff.events.onInputDown.add(this.pauseCtrl,this); 
+      this.musicOff.visible = false;
+      this.textGroup.add(this.musicOff);
+      
+      this.musicOn = this.add.sprite(110,32,'musicOnw');
+      this.musicOn.anchor.setTo(0.5, 0.5);
+      this.musicOn.inputEnabled = true;
+      this.musicOn.input.useHandCursor = true;
+      this.musicOn.fixedToCamera = true; 
+      this.musicOn.events.onInputDown.add(this.pauseCtrl,this);          
+      this.textGroup.add(this.musicOn);
+      
+      
       this.textGroup.add(this.score);
       this.count = 0;
       this.prev = 0;
@@ -189,86 +236,126 @@ var count = 0;
       this.game.state.start('social');
 
     },
-    update: function () {
+    pauseCtrl: function () {
+      if(this.soundCtrl == 0){
+        bgmusic.pause();
+        this.soundCtrl = 1;
+        this.musicOff.visible = true;
+        this.musicOn.visible = false;        
+
+        
+      }
+      else{
+        bgmusic.resume();
+        this.soundCtrl = 0;
+        this.musicOff.visible = false;
+        this.musicOn.visible = true;        
+      }
       
-      this.score.setText(this.count+'');
-      //position of text
-      this.score.y += (this.scoreTar - this.score.y)*0.1;
-      
-      if(this.alphaCounter > 0){
-        this.scoreTar = 420
-        this.alphaCounter--;
-        if(this.alphaCounter < 0){
-          this.alphaCounter = 0;
+    }, 
+    pauseCtrl2: function () {
+      if(this.pausebtn.visible == true){
+        this.pausebtn.visible = false;
+        this.playbtn.visible = true;
+        this.pause = true;
+        this.physics.gravity.y = 0;
+        for(var i = 0 ; i < this.group.length; i++){
+          this.group[i].body.velocity.y= 0;
+          
+          
         }
       }
       else{
-        this.scoreTar = 500;
+        this.pausebtn.visible = true;
+        this.playbtn.visible = false;
+        this.pause = false;
+        this.physics.gravity.y = 300;
       }
-
-
-
-
       
-      for(var i = 0 ; i < this.group.length; i++){
-        
+    },     
+    update: function () {
+      
+      if(this.pause == false){
+        this.score.setText(this.count+'');
+        //position of text
+        this.score.y += (this.scoreTar - this.score.y)*0.1;
 
-        if(this.group[i].hp > 0){
-          
-          if(this.group[i].width > 64){
-            this.group[i].width--;
-            this.group[i].height = this.group[i].width;
+        if(this.alphaCounter > 0){
+          this.scoreTar = 420
+          this.alphaCounter--;
+          if(this.alphaCounter < 0){
+            this.alphaCounter = 0;
           }
-          
-          this.hp1[i].y = this.group[i].y;
-          this.hp1[i].body.velocity = -1;      
-          
-          this.hp2[i].y = this.group[i].y;
-          this.hp2[i].body.velocity = -1;      
-          
-          this.hp3[i].y = this.group[i].y;
-          this.hp3[i].body.velocity = -1;                
-          if( this.group[i].y >480){
-            this.reset();
-          }
-          else if(this.group[i].y < 1){
-            //this.group[i].y =1;
-            //this.group[i].body.velocity.y = 0;
-          }
-          if(this.group[i].x > 320){
-            this.group[i].x = 310;
-            this.group[i].body.velocity.x = -1*this.group[i].body.velocity.x;
-          }
-          else if(this.group[i].x < 0){
-            this.group[i].x = 10;
-            this.group[i].body.velocity.x = -1*this.group[i].body.velocity.x;
-          }    
-          if(this.group[i].hp == 2){
-            this.hp3[i].visible = false;
-          }
-          if(this.group[i].hp == 1){
-            this.hp2[i].visible = false;
-          }          
-          
-                    
         }
         else{
-          this.hp1[i].visible = false;
-
-          if(this.group[i].width <= 800){
-            this.group[i].width++;
-            this.group[i].height = this.group[i].width++;
-            
-          }
-          this.group[i].body.velocity.y =-1;
+          this.scoreTar = 500;
         }
-          
-        
 
-        
 
+
+
+
+        for(var i = 0 ; i < this.group.length; i++){
+
+
+          if(this.group[i].hp > 0){
+
+            if(this.group[i].width > 64){
+              this.group[i].width--;
+              this.group[i].height = this.group[i].width;
+            }
+
+            this.hp1[i].y = this.group[i].y;
+            this.hp1[i].body.velocity = -1;      
+
+            this.hp2[i].y = this.group[i].y;
+            this.hp2[i].body.velocity = -1;      
+
+            this.hp3[i].y = this.group[i].y;
+            this.hp3[i].body.velocity = -1;                
+            if( this.group[i].y >480){
+              this.reset();
+            }
+            else if(this.group[i].y < 1){
+              //this.group[i].y =1;
+              //this.group[i].body.velocity.y = 0;
+            }
+            if(this.group[i].x > 320){
+              this.group[i].x = 310;
+              this.group[i].body.velocity.x = -1*this.group[i].body.velocity.x;
+            }
+            else if(this.group[i].x < 0){
+              this.group[i].x = 10;
+              this.group[i].body.velocity.x = -1*this.group[i].body.velocity.x;
+            }    
+            if(this.group[i].hp == 2){
+              this.hp3[i].visible = false;
+            }
+            if(this.group[i].hp == 1){
+              this.hp2[i].visible = false;
+            }          
+
+
+          }
+          else{
+            this.hp1[i].visible = false;
+
+            if(this.group[i].width <= 800){
+              this.group[i].width++;
+              this.group[i].height = this.group[i].width++;
+
+            }
+            this.group[i].body.velocity.y =-1;
+          }
+
+
+
+
+
+        }
+        
       }
-
+        
 
 
 

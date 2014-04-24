@@ -32,10 +32,14 @@
       this.load.image('hpring3', 'assets/hpRing3.png');
       
       this.load.image('retry', 'assets/retry.png');
+      this.load.image('play', 'assets/play.png');
+      this.load.image('pause', 'assets/pause.png');
 
       
       
       
+      this.load.image('musicOnw', 'assets/musicOnw.png');
+      this.load.image('musicOffw', 'assets/musicOffw.png');
       
       
       this.load.image('musicOn', 'assets/musicOn.png');
