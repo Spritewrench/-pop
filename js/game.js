@@ -109,21 +109,22 @@ var count = 0;
     },
     //custom functions
     tap: function (ball) {
-      if(ball.hp > 1){
-        ball.body.velocity.y =-300;
-        //ball.body.velocity.x = Math.floor((Math.random()*200)-100);
-        //this.count++;  
-        ball.hp--;
-        ball.width += 30/ball.hp;
-        ball.height += 30/ball.hp;
+      if(this.pause == false){
+        if(ball.hp > 1){
+          ball.body.velocity.y =-300;
+          //ball.body.velocity.x = Math.floor((Math.random()*200)-100);
+          //this.count++;  
+          ball.hp--;
+          ball.width += 30/ball.hp;
+          ball.height += 30/ball.hp;
+        }
+        else if(ball.hp === 1){
+          this.count++; 
+          this.alphaCounter = 100;
+          this.addBall(ball.x,-10);
+          ball.hp = 0;
+        }
       }
-      else if(ball.hp === 1){
-        this.count++; 
-        this.alphaCounter = 100;
-        this.addBall(ball.x,-10);
-        ball.hp = 0;
-      }
-
 
         
 
