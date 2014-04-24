@@ -58,6 +58,10 @@
       style = { font: '100px nunitolight', fill: '#fff', align: 'center' };   
       this.scoreText = this.add.text(x+10, 110, scoreMsg, style) ;      
       this.scoreText.anchor.setTo(0.5, 0.5);
+      
+      style = { font: '24px nunitolight', fill: '#fff', align: 'center' };
+      this.hscoreText2 = this.add.text(x, 400, "current high score: "+localStorage.getItem("highScore"), style) ;      
+      this.hscoreText2.anchor.setTo(0.5, 0.5);      
     },
 
     update: function () {
